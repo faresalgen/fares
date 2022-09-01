@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_doctor_tree" model="ir.ui.view">
+        <field name="name">hospital.doctor.tree</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="doctor_name"/>
+                <field name="gender"/>
+                <field name="age"/>
+                <field name="note"/>
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+   <record id="view_doctor_form" model="ir.ui.view">
+        <field name="name">hospital.doctor.form</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>  
+                    <group>
+                        <group>
+                            <field name="doctor_name"/>
+                            <field name="age"/>
+                            <field name="note"/>
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="active" invisible="0"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_doctor_search" model="ir.ui.view">
+        <field name="name">hospital.doctor.search</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <search string="Doctors">
+                <field name="doctor_name"/>
+            </search>
+        </field>
+    </record>
+
+
+
+   <record id="action_hospital_doctor" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.doctor</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first doctor!
+            </p>
+        </field>
+   </record>
+
+   <menuitem id="menu_hospital_main"
+              name="Hospital"
+              sequence="10"/>
+
+    <menuitem id="menu_doctor"
+              name="Doctors"
+              parent="menu_hospital_main"
+              action="action_hospital_doctor"
+              sequence="10"/>
+</odoo>
